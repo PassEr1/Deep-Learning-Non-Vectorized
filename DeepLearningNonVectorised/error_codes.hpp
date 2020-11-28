@@ -1,0 +1,8 @@
+#pragma once
+
+enum ErrorCode
+{
+	SUCESS = 0,
+	DATA_SET_FILE_FORMAT_ERROR,
+	NUMBER_OF_INPUTS_TO_HYPOTHESIS_IS_WRONG
+};
