@@ -1,5 +1,9 @@
 #include "exceptions.hpp"
 #include "data_loader.hpp"
+#include "input_neuron.hpp"
+#include "neuron.hpp"
+#include "math_utils.hpp"
+#include <time.h>
 #include <iostream>
 
 int main()
@@ -11,9 +15,18 @@ int main()
         The predictions is either the chance of the matrix to has a signed diagonal (with ones) or an ortogonal sign. 
 
          */
-     
-        PDataCollection data = DataLoader::read_data(L"..\\data_set__diagonal_or_ortogonal.csv", 29, 18);
         
+        PDataCollection data = DataLoader::read_data(L"..\\data_set__diagonal_or_ortogonal.csv", 29, 18);
+        InputNeuron inp1(3);
+        InputNeuron inp2(2);
+        srand(time(NULL));
+        Neuron n1(MathFunctions::sigmoid, { &inp1, &inp2 });
+        Neuron n2(MathFunctions::sigmoid, { &inp1, &inp2 });
+        inp1.fire();
+        inp2.fire();
+        n1.fire();
+        n2.fire();
+        std::cout << n1.get_output() << " " << n2.get_output();
     }
     catch (MyException & e)
     {
