@@ -4,12 +4,17 @@
 #include <cstdint>
 #include <string>
 #include <vector>
+#include <memory>
 
 class Neuron final
 	:public BaseNeuron
+
 {
 public: 
-	Neuron(activition_signature activition_func, std::vector<BaseNeuron*> connections);
+	using PtrNeuron = std::shared_ptr<BaseNeuron>;
+
+public:
+	Neuron(activition_signature activition_func, std::vector<Neuron::PtrNeuron> connections);
 
 public:
 	void add_to_bias(double add_to_bias);
@@ -35,7 +40,7 @@ private:
 
 private:
 	const activition_signature _activition;
-	const std::vector<BaseNeuron*> _connections;
+	const std::vector<PtrNeuron> _connections;
 	std::vector<double> _inputs;
 	std::vector<double> _weights;
 	double _delta;

@@ -1,8 +1,7 @@
 #include "exceptions.hpp"
 #include "data_loader.hpp"
-#include "input_neuron.hpp"
-#include "neuron.hpp"
 #include "math_utils.hpp"
+#include "trainner.hpp"
 #include <time.h>
 #include <iostream>
 
@@ -15,18 +14,36 @@ int main()
         The predictions is either the chance of the matrix to has a signed diagonal (with ones) or an ortogonal sign. 
 
          */
-        
-        PDataCollection data = DataLoader::read_data(L"..\\data_set__diagonal_or_ortogonal.csv", 29, 18);
-        InputNeuron inp1(3);
-        InputNeuron inp2(2);
-        srand(time(NULL));
-        Neuron n1(MathFunctions::sigmoid, { &inp1, &inp2 });
-        Neuron n2(MathFunctions::sigmoid, { &inp1, &inp2 });
-        inp1.fire();
-        inp2.fire();
-        n1.fire();
-        n2.fire();
-        std::cout << n1.get_output() << " " << n2.get_output();
+        static const uint32_t DATA_SAMPLES_COUNT = 29;
+        static const uint32_t INPUT_NEURONS_COUNT = 16;
+        static const uint32_t OUTPUT_NEURONS_COUNT = 2;
+        PDataCollection data = DataLoader::read_data(
+            L"..\\data_set__diagonal_or_ortogonal.csv",
+            DATA_SAMPLES_COUNT, 
+            INPUT_NEURONS_COUNT 
+            + OUTPUT_NEURONS_COUNT);
+
+        static const uint32_t LAYER_1_NEURONS_COUNT = 16;
+        static const uint32_t LAYER_2_NEURONS_COUNT = 8;
+        std::vector<uint32_t> architecture = {
+            INPUT_NEURONS_COUNT,
+            LAYER_1_NEURONS_COUNT,
+            LAYER_2_NEURONS_COUNT,
+            OUTPUT_NEURONS_COUNT };
+
+        NetworkFullyConnected network(architecture);
+
+        static const double LEARNING_RATE = 0.1;
+        static const double STOP_TRAINING_THRESHOLD = 0.5;
+        static const uint32_t BATCH_SIZE = 2;
+        static const uint32_t EPOCHS = 20;
+
+        SGD_Trainner::train(network,
+            LEARNING_RATE,
+            STOP_TRAINING_THRESHOLD,
+            BATCH_SIZE,
+            EPOCHS, data);
+           
     }
     catch (MyException & e)
     {

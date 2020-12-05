@@ -6,9 +6,6 @@ class InputNeuron final
 :public BaseNeuron
 {
 public:
-	InputNeuron(double value);
-
-public:
 	InputNeuron(const InputNeuron&) = delete;
 	InputNeuron(InputNeuron&&) = delete;
 	InputNeuron& operator=(const InputNeuron&) = delete;
@@ -17,8 +14,9 @@ public:
 public:
 	double get_output() const override;
 	void fire() override;
+	void set_input(double value);
 
 private:
-	const double _value;
+	double _value;
 
 };

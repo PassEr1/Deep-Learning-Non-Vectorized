@@ -1,8 +1,5 @@
 #include "input_neuron.hpp"
 
-InputNeuron::InputNeuron(double value)
-:_value(value)
-{}
 
 double InputNeuron::get_output() const
 {
@@ -11,3 +8,8 @@ double InputNeuron::get_output() const
 
 void InputNeuron::fire()
 {}
+
+void InputNeuron::set_input(double value)
+{
+	_value = value;
+}

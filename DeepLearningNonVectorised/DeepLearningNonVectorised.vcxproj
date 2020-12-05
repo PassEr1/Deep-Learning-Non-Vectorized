@@ -149,12 +149,24 @@
   <ItemGroup>
     <ClCompile Include="data_loader.cpp" />
     <ClCompile Include="exceptions.cpp" />
+    <ClCompile Include="input_neuron.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="math_utils.cpp" />
+    <ClCompile Include="network.cpp" />
+    <ClCompile Include="neuron.cpp" />
+    <ClCompile Include="trainner.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="data_loader.hpp" />
     <ClInclude Include="error_codes.hpp" />
     <ClInclude Include="exceptions.hpp" />
+    <ClInclude Include="base_neuron.hpp" />
+    <ClInclude Include="input_neuron.hpp" />
+    <ClInclude Include="math_consts.hpp" />
+    <ClInclude Include="math_utils.hpp" />
+    <ClInclude Include="network.hpp" />
+    <ClInclude Include="neuron.hpp" />
+    <ClInclude Include="trainner.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

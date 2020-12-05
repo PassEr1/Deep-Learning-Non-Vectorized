@@ -2,23 +2,25 @@
 #include "exceptions.hpp"
 #include "math_consts.hpp"
 #include <algorithm>
+static const double ZERO_INITIATION = 0;
 
-Neuron::Neuron(activition_signature activition_func, std::vector<BaseNeuron*> connections)
+Neuron::Neuron(activition_signature activition_func, std::vector<Neuron::PtrNeuron> connections)
 	:_activition(activition_func),
 	_connections(connections),
-	_delta(0),
-	_derivative(0),
+	_delta(ZERO_INITIATION),
+	_derivative(ZERO_INITIATION),
 	_bias(InitialValues::random(-MathConsts::EPSILON, MathConsts::EPSILON)),
-	_output(0),
+	_output(ZERO_INITIATION),
 	_weights(InitialValues::random_vector(connections.size(), -MathConsts::EPSILON, MathConsts::EPSILON)),
-	_inputs(connections.size(), 0)
+	_inputs(connections.size(), ZERO_INITIATION)
 {}
 
 void Neuron::fire()
 {
 	read_inputs();
-	double z = 0;
-	for (uint32_t input_index = 0; input_index < _inputs.size(); input_index++)
+	double z = ZERO_INITIATION;
+	static const uint32_t FIRST_NODE_INDEX = 0;
+	for (uint32_t input_index = FIRST_NODE_INDEX; input_index < _inputs.size(); input_index++)
 	{
 		z += _weights[input_index] * _inputs[input_index];
 	}
@@ -39,7 +41,8 @@ void Neuron::add_to_weights(std::vector<double> add_to_weights)
 		throw MyException(ErrorCode::WEIGHTS_FORM_NOT_MATH);
 	}
 
-	for (size_t wi = 0; wi < _weights.size(); wi++)
+	static const uint32_t FIRST_WEIGHT_INDEX = 0;
+	for (size_t wi = FIRST_WEIGHT_INDEX; wi < _weights.size(); wi++)
 	{
 		_weights[wi] += add_to_weights[wi];
 	}
@@ -63,9 +66,9 @@ double Neuron::get_output() const
 void Neuron::read_inputs()
 {
 	uint32_t index_to_save_input=0;
-	for(BaseNeuron* connection: _connections)
+	for (size_t connection_index = 0; connection_index < _connections.size(); connection_index++)
 	{
-		_inputs[index_to_save_input] = connection->get_output();
+		_inputs[index_to_save_input] = _connections[connection_index]->get_output();
 		index_to_save_input++;
 	}
 }
