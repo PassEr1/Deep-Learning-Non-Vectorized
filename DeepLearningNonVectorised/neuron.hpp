@@ -14,7 +14,7 @@ public:
 	using PtrNeuron = std::shared_ptr<BaseNeuron>;
 
 public:
-	Neuron(activition_signature activition_func, std::vector<Neuron::PtrNeuron> connections);
+	Neuron(ActivitionFunction activition_func, std::vector<Neuron::PtrNeuron> connections);
 
 public:
 	void add_to_bias(double add_to_bias);
@@ -39,7 +39,7 @@ private:
 	void read_inputs();
 
 private:
-	const activition_signature _activition;
+	const ActivitionFunction _activition;
 	const std::vector<PtrNeuron> _connections;
 	std::vector<double> _inputs;
 	std::vector<double> _weights;

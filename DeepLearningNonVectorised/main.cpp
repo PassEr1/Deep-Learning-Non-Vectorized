@@ -31,7 +31,7 @@ int main()
             LAYER_2_NEURONS_COUNT,
             OUTPUT_NEURONS_COUNT };
 
-        NetworkFullyConnected network(architecture);
+        NetworkFullyConnected network(architecture, MathFunctions::sigmoid);
 
         static const double LEARNING_RATE = 0.1;
         static const double STOP_TRAINING_THRESHOLD = 0.5;

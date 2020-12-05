@@ -4,7 +4,7 @@
 #include <algorithm>
 static const double ZERO_INITIATION = 0;
 
-Neuron::Neuron(activition_signature activition_func, std::vector<Neuron::PtrNeuron> connections)
+Neuron::Neuron(ActivitionFunction activition_func, std::vector<Neuron::PtrNeuron> connections)
 	:_activition(activition_func),
 	_connections(connections),
 	_delta(ZERO_INITIATION),

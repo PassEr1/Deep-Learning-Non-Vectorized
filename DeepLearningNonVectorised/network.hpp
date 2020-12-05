@@ -10,7 +10,7 @@ class NetworkFullyConnected final
 	using Layer = std::vector<Neuron::PtrNeuron>;
 
 public:
-	NetworkFullyConnected(std::vector<uint32_t> inputs_per_layer);
+	NetworkFullyConnected(std::vector<uint32_t> inputs_per_layer, ActivitionFunction default_activition);
 
 public:
 	std::vector<double> predict(const std::vector<double>& inputs_to_feed);
@@ -22,10 +22,10 @@ public:
 	NetworkFullyConnected& operator=(NetworkFullyConnected&&) = delete;
 
 private:
-	static std::vector<NetworkFullyConnected::Layer> build_layers(std::vector<uint32_t> inputs_per_layer);
-	static Layer build_layer(uint32_t len, activition_signature activition, 
+	static Layer build_layer(uint32_t len, ActivitionFunction activition, 
 		std::vector<Neuron::PtrNeuron> input_connection);
 	static void layer_fire(Layer& layer);
+	static std::vector<Layer> build_layers(const std::vector<uint32_t>& inputs_per_layer, ActivitionFunction activition);
 
 private:
 	void forward_propergation();

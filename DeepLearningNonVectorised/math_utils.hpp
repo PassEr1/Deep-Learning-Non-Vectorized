@@ -4,7 +4,7 @@
 #include <cstdint>
 
 
-using activition_signature = std::function<double(double)>;
+using ActivitionFunction = std::function<double(double)>;
 
 namespace InitialValues {
 	double random(double from, double to);

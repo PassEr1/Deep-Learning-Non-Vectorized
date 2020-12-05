@@ -6,6 +6,7 @@ class InputNeuron final
 :public BaseNeuron
 {
 public:
+	InputNeuron() = default;
 	InputNeuron(const InputNeuron&) = delete;
 	InputNeuron(InputNeuron&&) = delete;
 	InputNeuron& operator=(const InputNeuron&) = delete;
@@ -17,6 +18,6 @@ public:
 	void set_input(double value);
 
 private:
-	double _value;
+	 double _value;
 
 };
