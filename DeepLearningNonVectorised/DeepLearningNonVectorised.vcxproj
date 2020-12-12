@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="data_loader.cpp" />
+    <ClCompile Include="data_manipulation.cpp" />
     <ClCompile Include="exceptions.cpp" />
     <ClCompile Include="input_neuron.cpp" />
     <ClCompile Include="main.cpp" />
@@ -158,6 +159,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="data_loader.hpp" />
+    <ClInclude Include="data_manipulation.hpp" />
     <ClInclude Include="error_codes.hpp" />
     <ClInclude Include="exceptions.hpp" />
     <ClInclude Include="base_neuron.hpp" />

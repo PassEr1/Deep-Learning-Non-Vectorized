@@ -36,7 +36,7 @@ int main()
         static const double LEARNING_RATE = 0.1;
         static const double STOP_TRAINING_THRESHOLD = 0.5;
         static const uint32_t BATCH_SIZE = 2;
-        static const uint32_t EPOCHS = 20;
+        static const uint32_t EPOCHS = 80;
 
         SGD_Trainner::train(network,
             LEARNING_RATE,
@@ -61,10 +61,12 @@ int main()
 /*
 TODO:
 1. implement a cost-function checker.
-2. wrap the DataCollection so nobody can assign or aoveride 2 PDataCollection from diffrent sizes
+2. wrap the DataCollection so nobody can assign or override 2 PDataCollection from diffrent sizes
+3. zero_delta_for_layer should be called for each layer BEFORE each batch.
+4. try to move most of the api funtion for Neuron into BaseNeuron;
 
 ** solved:
-1. check whather need to update weights in parallel --> sort of... ( after the the batch).
-2. biases wont we a regular neuron, but an inner value within each neuron.
+1. check whather need to update weights in parallel --> yes, and after the the batch).
+2. biases wont be a regular neuron, but an inner value within each neuron.
 
 */

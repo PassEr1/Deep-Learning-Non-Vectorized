@@ -39,6 +39,9 @@
     <ClCompile Include="trainner.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="data_manipulation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="data_loader.hpp">
@@ -69,6 +72,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="trainner.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="data_manipulation.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

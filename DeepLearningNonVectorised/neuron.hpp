@@ -19,6 +19,12 @@ public:
 public:
 	void add_to_bias(double add_to_bias);
 	void add_to_weights(std::vector<double> add_to_weights);
+	void add_to_delta(double add_to_delta);
+	void set_delta(double delta);
+	void backpropergate_delta();
+	void compute_partial_derivative();
+	void reset_partial_derivative();
+	void update_weights(double factor);
 
 public:
 	void fire() override;
@@ -43,8 +49,8 @@ private:
 	const std::vector<PtrNeuron> _connections;
 	std::vector<double> _inputs;
 	std::vector<double> _weights;
+	std::vector<double> _partial_derivatives;
 	double _delta;
-	double _derivative;
 	double _bias;
 	double _output;
 };

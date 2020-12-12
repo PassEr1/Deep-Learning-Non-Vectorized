@@ -4,7 +4,8 @@
 #include <string>
 #include <memory>
 
-using DataCollection = std::vector<std::vector<double>>;
+using DataSample = std::vector<double>;
+using DataCollection = std::vector<DataSample>;
 using PDataCollection = std::shared_ptr<DataCollection>;
 
 namespace DataLoader {
