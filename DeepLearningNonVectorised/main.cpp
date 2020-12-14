@@ -2,8 +2,20 @@
 #include "data_loader.hpp"
 #include "math_utils.hpp"
 #include "trainner.hpp"
+#include"batch_loader.hpp"
 #include <time.h>
 #include <iostream>
+
+void print_some_test_sample(NetworkFullyConnected& network, PDataCollection data)
+{
+
+    std::wcout << "*** this is a test prediction: \n";
+    auto prediction = network.predict(data->at(0));
+    for (double input : data->at(0)) { std::wcout << input << " "; }
+    std::wcout << std::endl;
+    std::wcout << prediction[0] << L" " << prediction[1] << std::endl;
+
+}
 
 int main()
 {
@@ -30,20 +42,21 @@ int main()
             LAYER_1_NEURONS_COUNT,
             LAYER_2_NEURONS_COUNT,
             OUTPUT_NEURONS_COUNT };
-
         NetworkFullyConnected network(architecture, MathFunctions::sigmoid);
 
         static const double LEARNING_RATE = 0.1;
         static const double STOP_TRAINING_THRESHOLD = 0.5;
-        static const uint32_t BATCH_SIZE = 2;
-        static const uint32_t EPOCHS = 80;
+        static const uint32_t BATCH_SIZE = 1;
+        static const uint32_t EPOCHS = 100;
 
         SGD_Trainner::train(network,
             LEARNING_RATE,
             STOP_TRAINING_THRESHOLD,
             BATCH_SIZE,
             EPOCHS, data);
-           
+
+        print_some_test_sample(network, data);
+
     }
     catch (MyException & e)
     {
@@ -60,13 +73,7 @@ int main()
 }
 /*
 TODO:
-1. implement a cost-function checker.
 2. wrap the DataCollection so nobody can assign or override 2 PDataCollection from diffrent sizes
-3. zero_delta_for_layer should be called for each layer BEFORE each batch.
 4. try to move most of the api funtion for Neuron into BaseNeuron;
-
-** solved:
-1. check whather need to update weights in parallel --> yes, and after the the batch).
-2. biases wont be a regular neuron, but an inner value within each neuron.
 
 */

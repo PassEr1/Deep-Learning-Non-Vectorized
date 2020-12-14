@@ -76,7 +76,7 @@ void Neuron::compute_partial_derivative()
 		new_partial_derivatives.end(),
 		new_partial_derivatives.begin(),
 		[&](auto one_input) {return one_input * _delta; });
-	DataManipulation::add_vector(_partial_derivatives, new_partial_derivatives);
+	_partial_derivatives = DataManipulation::add_vector(_partial_derivatives, new_partial_derivatives);
 	
 }
 

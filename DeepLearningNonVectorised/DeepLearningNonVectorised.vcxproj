@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="batch_loader.cpp" />
     <ClCompile Include="data_loader.cpp" />
     <ClCompile Include="data_manipulation.cpp" />
     <ClCompile Include="exceptions.cpp" />
@@ -168,6 +169,7 @@
     <ClInclude Include="math_utils.hpp" />
     <ClInclude Include="network.hpp" />
     <ClInclude Include="neuron.hpp" />
+    <ClInclude Include="batch_loader.hpp" />
     <ClInclude Include="trainner.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
